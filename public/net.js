@@ -16,7 +16,6 @@ networkSeries.maxRadius = 60
 networkSeries.minRadius = 20
 networkSeries.manyBodyStrength = -5;
 networkSeries.centerStrength = 0.9;
-networkSeries.links.template.strength = 1;
 
 networkSeries.dataFields.linkWith = "linkWith";
 networkSeries.dataFields.name = "name";
@@ -36,7 +35,7 @@ nodeTemplate.label.fill = "#000000"
 
 var linkTemplate = networkSeries.links.template;
 linkTemplate.strokeWidth = 1;
-// linkTemplate.strength = 1;
+linkTemplate.strength = 1;
 var linkHoverState = linkTemplate.states.create("hover");
 linkHoverState.properties.strokeOpacity = 1;
 linkHoverState.properties.strokeWidth = 2;
