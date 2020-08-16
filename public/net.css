@@ -25,6 +25,7 @@ body {
   border: none;
   width: 200px;
   height: 30px;
+  margin:5px;
   background-color: #5dff6e;
 }
 .reset {

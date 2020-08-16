@@ -42,11 +42,11 @@ linkHoverState.properties.strokeWidth = 2;
 
 // charts events
 nodeTemplate.events.on("over", function(event) {  // hoover over
+    var dataItem = event.target.dataItem;
+    dataItem.childLinks.each(function(link) {
+        link.isHover = true;
+    })
     if (showCharts) {
-        var dataItem = event.target.dataItem;
-        dataItem.childLinks.each(function(link) {
-            link.isHover = true;
-        })
         // show toggle button
         var button = document.getElementById("toggle-chart");
         button.style.visibility = 'visible'
