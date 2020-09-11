@@ -1,0 +1,23 @@
+{
+  "name": "collab-net",
+  "version": "1.0.0",
+  "description": "network visual of Billboard 100 artist collaborations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mickeybarcia/collab-net.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mickeybarcia/collab-net/issues"
+  },
+  "homepage": "https://github.com/mickeybarcia/collab-net#readme",
+  "dependencies": {
+    "http-server": "^0.12.3"
+  },
+  "postinstall" : "gulp build"
+}
