@@ -77,7 +77,7 @@ def collapse(charts_list):
     return song_data
 
 
-FIRST_YEAR = "2018"
+FIRST_YEAR = "2019"
 LAST_YEAR = "2020"
 
 start = datetime.strptime(FIRST_YEAR, '%Y')

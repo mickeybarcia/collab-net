@@ -79,5 +79,5 @@ for artist in final_net.keys():
     data.append(data_row)
 
 ## save data
-with open('../public/net.json', 'w') as f:
+with open('./public/net.json', 'w') as f:
     json.dump(data, f)     
