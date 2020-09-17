@@ -4,7 +4,7 @@
   "description": "network visual of Billboard 100 artist collaborations",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild": "sh update_data.sh",
+    "heroku-postbuild": "python data/full_build.py",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
