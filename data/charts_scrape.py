@@ -77,20 +77,23 @@ def collapse(charts_list):
     return song_data
 
 
-FIRST_YEAR = "2019"
-LAST_YEAR = "2020"
+class ChartsScrape:
 
-start = datetime.strptime(FIRST_YEAR, '%Y')
-end = datetime.strptime(LAST_YEAR + "-12-31", '%Y-%m-%d')
+    def run(self):
+        FIRST_YEAR = "2018"
+        LAST_YEAR = "2020"
 
-days = rrule(DAILY, dtstart=start, until=end)
-start = time.time()
-with Pool() as p:
-    charts_list = p.map(soup_scrape, days)
-end = time.time()
-print(end - start)
+        start = datetime.strptime(FIRST_YEAR, '%Y')
+        end = datetime.strptime(LAST_YEAR + "-12-31", '%Y-%m-%d')
 
-final_chart = collapse(charts_list)
-charts_df = pd.DataFrame(final_chart.values())
-del charts_df['date']
-charts_df.to_csv('charts.csv', sep='\t')
+        days = rrule(DAILY, dtstart=start, until=end)
+        start = time.time()
+        with Pool() as p:
+            charts_list = p.map(soup_scrape, days)
+        end = time.time()
+        print(end - start)
+
+        final_chart = collapse(charts_list)
+        charts_df = pd.DataFrame(final_chart.values())
+        del charts_df['date']
+        charts_df.to_csv('charts.csv', sep='\t')

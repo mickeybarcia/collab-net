@@ -1,6 +1,8 @@
 // chart initialize
 am4core.useTheme(am4themes_animated);
 var chart = am4core.create("chartdiv", am4plugins_forceDirected.ForceDirectedTree);
+chart.preloader.disabled = true;
+
 var networkSeries = chart.series.push(new am4plugins_forceDirected.ForceDirectedSeries())
 networkSeries.dataSource.requestOptions.requestHeaders = [{
     "key": "Access-Control-Allow-Origin",
@@ -98,7 +100,32 @@ networkSeries.events.on("dataitemsvalidated", function(ev) {  // data loaded
     console.log(networkSeries.data)
 }, this);
 
+chart.events.on("ready", function(ev){
+    hideLoader();
+});
+
+
 // functions
+
+var indicator;
+function showLoader() {
+  indicator = chart.tooltipContainer.createChild(am4core.Container);
+  indicator.background.fill = am4core.color("#fff");
+  indicator.background.fillOpacity = 0.8;
+  indicator.width = am4core.percent(100);
+  indicator.height = am4core.percent(100);
+  var indicatorLabel = indicator.createChild(am4core.Label);
+  indicatorLabel.text = "Loading the NET...";
+  indicatorLabel.align = "center";
+  indicatorLabel.valign = "middle";
+  indicatorLabel.fontSize = 20;
+}
+
+showLoader()
+function hideLoader() {
+    indicator.hide();
+}
+
 function reset() {
     networkSeries.links.template.strength = 1;
     networkSeries.manyBodyStrength = -5;
