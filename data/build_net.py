@@ -78,6 +78,23 @@ for artist in final_net.keys():
         data_row["value"] += sum(artist_net[artist]["features"].values())
     data.append(data_row)
 
-## save data
-with open('./public/net.json', 'w') as f:
+# save data
+filename = 'net.json'
+with open(filename, 'w') as f:
     json.dump(data, f)     
+
+from google.cloud import storage
+import os
+from dotenv import load_dotenv
+from google.oauth2 import service_account
+
+load_dotenv()
+cred_str = os.environ.get('STORAGE_KEY')
+credentials = service_account.Credentials.from_service_account_info(json.loads(cred_str))
+client = storage.Client(project='collab-net', credentials=credentials)
+bucket = client.get_bucket('collab-net-charts')
+blob = bucket.blob(filename)
+
+with open(filename, 'rb') as f:
+    blob.upload_from_file(f)
+blob.make_public()

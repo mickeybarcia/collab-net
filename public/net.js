@@ -2,7 +2,14 @@
 am4core.useTheme(am4themes_animated);
 var chart = am4core.create("chartdiv", am4plugins_forceDirected.ForceDirectedTree);
 var networkSeries = chart.series.push(new am4plugins_forceDirected.ForceDirectedSeries())
-networkSeries.dataSource.url = 'net.json'
+networkSeries.dataSource.requestOptions.requestHeaders = [{
+    "key": "Access-Control-Allow-Origin",
+    "value": "https://collab-net.herokuapp.com/"
+  },{
+    "key": "Content-Type",
+    "value": "application/octet-stream"
+  }];
+networkSeries.dataSource.url = 'https://storage.googleapis.com/collab-net-charts/net.json'
 
 // initialize
 var originalData = null
@@ -88,6 +95,7 @@ networkSeries.events.on("dataitemsvalidated", function(ev) {  // data loaded
             artists.add(item.name)
         })
     }
+    console.log(networkSeries.data)
 }, this);
 
 // functions

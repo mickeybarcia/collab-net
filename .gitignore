@@ -3,3 +3,6 @@
 node_modules/
 package-lock.json
 .env
+charts.csv
+net.json
+cors-json-file.json
