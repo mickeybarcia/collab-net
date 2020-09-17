@@ -6,7 +6,7 @@ chart.preloader.disabled = true;
 var networkSeries = chart.series.push(new am4plugins_forceDirected.ForceDirectedSeries())
 networkSeries.dataSource.requestOptions.requestHeaders = [{
     "key": "Access-Control-Allow-Origin",
-    "value": "https://collab-net.herokuapp.com/"
+    "value": "*"
   },{
     "key": "Content-Type",
     "value": "application/octet-stream"
