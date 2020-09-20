@@ -14,7 +14,6 @@ import sys
 import time
 
 sys.setrecursionlimit(100000)
-
 umd_url = "http://umdmusic.com/default.asp?Lang=English&Chart=D"
 session = requests.Session()
 
@@ -79,21 +78,29 @@ def collapse(charts_list):
 
 class ChartsScrape:
 
+    def __init__(self, first_year="2019", last_year="2020"):
+        self.first_year = first_year
+        self.last_year = last_year
+        self.chart_map = {}
+
+    def save(self):
+        charts_df = pd.DataFrame(self.chart_map.values())
+        del charts_df['date']
+        charts_df.to_csv('charts.csv', sep='\t')
+
     def run(self):
-        FIRST_YEAR = "2018"
-        LAST_YEAR = "2020"
-
-        start = datetime.strptime(FIRST_YEAR, '%Y')
-        end = datetime.strptime(LAST_YEAR + "-12-31", '%Y-%m-%d')
-
-        days = rrule(DAILY, dtstart=start, until=end)
+        # get list of days to scrape from
+        start_dt = datetime.strptime(self.first_year, '%Y')
+        end_dt = datetime.strptime(self.last_year + "-12-31", '%Y-%m-%d')
+        days = rrule(DAILY, dtstart=start_dt, until=end_dt)
+        
+        # scrape each day in parallel
         start = time.time()
         with Pool() as p:
             charts_list = p.map(soup_scrape, days)
         end = time.time()
-        print(end - start)
+        print("seconds spent scraping: " + str(end - start))
 
-        final_chart = collapse(charts_list)
-        charts_df = pd.DataFrame(final_chart.values())
-        del charts_df['date']
-        charts_df.to_csv('charts.csv', sep='\t')
+        # format and save chart csv
+        self.chart_map = collapse(charts_list)
+        self.save()
