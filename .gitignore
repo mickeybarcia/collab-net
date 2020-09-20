@@ -6,3 +6,4 @@ package-lock.json
 charts.csv
 net.json
 cors-json-file.json
+data/__pycache__/
