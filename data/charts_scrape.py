@@ -78,7 +78,7 @@ def collapse(charts_list):
 
 class ChartsScrape:
 
-    def __init__(self, first_year="2019", last_year="2020"):
+    def __init__(self, first_year="2020", last_year="2022"):
         self.first_year = first_year
         self.last_year = last_year
         self.chart_map = {}
