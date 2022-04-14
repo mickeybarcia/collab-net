@@ -22,7 +22,7 @@ def define_artists(artists_string):
     artists_string = artists_string.replace(".", "")
     # for char in [" x ", " / ", " and ", ", ", " with ", " + "]:
     #     artists_string = artists_string.replace(char, " & ")
-    for char in [" x ", " / ", " and ", ", ", " with ", " + ", " feat "]:
+    for char in [" x ", " / ", " and ", ", ", " with ", " + ", " feat ", " featuring "]:
         artists_string = artists_string.replace(char, " & ")
     # artists_string = artists_string.replace("feat ", "featuring ")
     artists = artists_string.split("featuring")
