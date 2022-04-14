@@ -1,8 +1,12 @@
 from charts_scrape import ChartsScrape
 from build_net import BuildNet
 
-chartScrape = ChartsScrape()
-chartScrape.run()
+def run():
+    chartScrape = ChartsScrape()
+    chartScrape.run()
 
-buildNet = BuildNet()
-buildNet.run()
+    buildNet = BuildNet()
+    buildNet.run()
+
+if __name__ == '__main__':
+    run()

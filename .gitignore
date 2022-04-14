@@ -7,3 +7,5 @@ charts.csv
 net.json
 cors-json-file.json
 data/__pycache__/
+*.pyc
+.tmp.driveupload/
