@@ -20,15 +20,13 @@ session = requests.Session()
 def define_artists(artists_string):  
     artists_dict = {}
     artists_string = artists_string.replace(".", "")
-    # for char in [" x ", " / ", " and ", ", ", " with ", " + "]:
-    #     artists_string = artists_string.replace(char, " & ")
-    for char in [" x ", " / ", " and ", ", ", " with ", " + ", " feat ", " featuring "]:
+    for char in [" x ", " / ", " and ", ", ", " with ", " + "]:
         artists_string = artists_string.replace(char, " & ")
-    # artists_string = artists_string.replace("feat ", "featuring ")
+    artists_string = artists_string.replace("feat ", "featuring ")
     artists = artists_string.split("featuring")
     artists_dict["artists"] = list(map(str.strip, artists[0].split(" & ")))
-    # if len(artists) == 2:
-    #     artists_dict["featuring"] = list(map(str.strip, artists[1].split(" & ")))
+    if len(artists) == 2:
+        artists_dict["featuring"] = list(map(str.strip, artists[1].split(" & ")))
     return artists_dict
 
 def scrape_row_details(row, date):  

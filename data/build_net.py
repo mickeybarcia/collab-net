@@ -68,19 +68,19 @@ def format_data(artist_net):
     for artist in artist_net.keys():
         data_row = { 
             "name": artist, 
-            "linkWith": list(artist_net[artist]["collabs"].keys()), 
+            "linkWith": list(artist_net[artist]["collabs"].keys()) + list(artist_net[artist]["features"].keys()),
             "value": sum(artist_net[artist]["collabs"].values()) * 3,
             "songs": artist_net[artist]["songs"]
         }
         if "features" in artist_net[artist]:
-            features = []
-            for feature in artist_net[artist]["features"].keys():
-                if feature not in artist_net:
-                    features.append({ 
-                        "name": feature, 
-                        "value": artist_net[artist]["features"][feature]
-                    })
-            data_row["children"] = features
+            # features = []
+            # for feature in artist_net[artist]["features"].keys():
+            #     if feature not in artist_net:
+            #         features.append({ 
+            #             "name": feature, 
+            #             "value": artist_net[artist]["features"][feature]
+            #         })
+            # data_row["children"] = features
             data_row["value"] += sum(artist_net[artist]["features"].values())
         data.append(data_row)
     return data
