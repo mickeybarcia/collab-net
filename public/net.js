@@ -187,6 +187,9 @@ networkSeries.events.on("dataitemsvalidated", function(ev) {  // data loaded
         originalData = networkSeries.data
         originalData.forEach(function(item) {
             artists.add(item.name)
+            item.linkWith.forEach(function(innerItem) {
+                artists.add(innerItem)
+            })
         })
     }
     console.log(networkSeries.data)
